@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App', () => {
+  it('renders the Workwise headline and feature list', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /workwise/i })).toBeInTheDocument();
+    expect(screen.getByText(/streamline workforce management/i)).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(4);
+  });
 });
